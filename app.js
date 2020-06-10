@@ -1,4 +1,8 @@
 /* Global selections et variables */
+const colorDivs = document.querySelectorAll(".color");
+const generateBtn = document.querySelector(".generate");
+const sliders = document.querySelectorAll('input[type="range"]');
+const currentHexes = document.querySelectorAll(".color h2");
 
 /* Fonctions */
 function generateHex() {
