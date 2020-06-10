@@ -30,6 +30,7 @@ function randomColors() {
     const randomColor = generateHexChromaJs();
     /* add couleur au background */
     div.style.backgroundColor = randomColor;
+    /* add texte pour identifier la couleur */
     hexText.innerText = randomColor;
   });
 }
