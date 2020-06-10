@@ -42,16 +42,16 @@ svg {
   display: flex;
   flex-direction: column;
   position: absolute;
-  pointer-events: none;
+  /* pointer-events: none; */
   bottom: 0%;
-  opacity: 0;
+  /* opacity: 0; */
   background: rgb(114, 81, 81);
   padding: 1rem;
   width: 80%;
   border-top-right-radius: 1rem;
   border-top-left-radius: 1rem;
   /*** WE ARE ADDING AN ADJUSTMENT CLASS ***/
-  transform: translateY(100px);
+  /* transform: translateY(100px); */
   transition: all 0.5s ease-in-out;
 }
 
@@ -116,4 +116,14 @@ svg {
   background: none;
   cursor: pointer;
   margin: 2rem 0rem;
+}
+
+/*** SLIDERS EFFECTS  ***/
+input[type="range"] {
+  -webkit-appearance: none;
+  margin: 1rem 0rem;
+  width: 100%;
+  position: relative;
+  border-radius: 1rem;
+  cursor: pointer;
 }

@@ -1,4 +1,5 @@
 /* Global selections et variables */
+
 const colorDivs = document.querySelectorAll(".color");
 const generateBtn = document.querySelector(".generate");
 const sliders = document.querySelectorAll('input[type="range"]');
@@ -34,6 +35,7 @@ function randomColors() {
     hexText.innerText = randomColor;
     /* add check pour le contrast */
     checkTextConstrast(randomColor, hexText);
+    /* Couleur initiale des sliders */
   });
 }
 
