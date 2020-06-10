@@ -6,27 +6,34 @@ const currentHexes = document.querySelectorAll(".color h2");
 
 /* Fonctions */
 /* Fonction permettant de générer le code Hexadecimal d'une couleur */
-function generateHex() {
-  const letters = "0123456789ABCDEF";
-  let hash = "#";
-  for (let i = 0; i < 6; i++) {
-    hash += letters[Math.floor(Math.random() * 16)];
-  }
-  return hash;
+
+/* VERSION NATIVE SANS UTILISER LIBRAIRIE CHROMA JS */
+// function generateHexNativeJs() {
+//   const letters = "0123456789ABCDEF";
+//   let hash = "#";
+//   for (let i = 0; i < 6; i++) {
+//     hash += letters[Math.floor(Math.random() * 16)];
+//   }
+//   return hash;
+// }
+
+/* VERSION UTILISANT LIBRAIRIE CHROMA JS */
+function generateHexChromaJs() {
+  const hexColor = chroma.random();
+  return hexColor;
 }
 
 /* fonction permettant l'affichage d'une couleur ayant été généré par la fonction generateHex */
 function randomColors() {
   colorDivs.forEach((div, index) => {
     const hexText = div.children[0];
-    const randomColor = generateHex();
-
+    const randomColor = generateHexChromaJs();
     /* add couleur au background */
     div.style.backgroundColor = randomColor;
     hexText.innerText = randomColor;
   });
 }
 
-let randomHex = generateHex();
-randomColors();
+let randomHex = generateHexChromaJs();
 console.log(randomHex);
+randomColors();
