@@ -32,9 +32,19 @@ function randomColors() {
     div.style.backgroundColor = randomColor;
     /* add texte pour identifier la couleur */
     hexText.innerText = randomColor;
+    /* add check pour le contrast */
+    checkTextConstrast(randomColor, hexText);
   });
 }
 
-let randomHex = generateHexChromaJs();
-console.log(randomHex);
+/* fonction permettant le controle du contraste d'une couleur de sorte d'écrire la valeur Hexadécimale de la couleur en noir ou blanc */
+function checkTextConstrast(color, text) {
+  const luminance = chroma(color).luminance();
+  if (luminance > 0.6) {
+    text.style.color = "black";
+  } else {
+    text.style.color = "white";
+  }
+}
+
 randomColors();
