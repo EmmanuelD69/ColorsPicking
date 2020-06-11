@@ -1,11 +1,15 @@
-/* Global selections et variables */
-
+/* SELECTIONS ET VARIABLES */
 const colorDivs = document.querySelectorAll(".color");
 const generateBtn = document.querySelector(".generate");
 const sliders = document.querySelectorAll('input[type="range"]');
 const currentHexes = document.querySelectorAll(".color h2");
+let couleurInitiale;
 
-/* Fonctions */
+/*** AJOUT DES EVENTS LISTENERS ***/
+sliders.forEach((slider) => {
+  slider.addEventListener("input", hslControls);
+});
+/* FONCTIONS */
 /* Fonction permettant de générer le code Hexadecimal d'une couleur */
 
 /* VERSION NATIVE SANS UTILISER LIBRAIRIE CHROMA JS */
@@ -59,7 +63,7 @@ function checkTextConstrast(color, text) {
 }
 
 function colorizeSliders(color, hue, brightness, saturation) {
-  /* Paramètres pour constituer la barre de saturation */
+  /* Paramètres pour constituer la barre de saturation (hsl = hue-saturation-luminescence) */
   const noSat = color.set("hsl.s", 0);
   const fullSat = color.set("hsl.s", 1);
   const echelleSat = chroma.scale([noSat, color, fullSat]);
@@ -80,6 +84,33 @@ function colorizeSliders(color, hue, brightness, saturation) {
 
   /* background de la barre de teinte */
   hue.style.backgroundImage = `linear-gradient(to right, rgb(204, 75, 75), rgb(204,204 ,75),rgb(75, 204, 75),rgb(75, 204, 204),rgb(75,75,204),rgb(204,75,204),rgb(204,75,75))`;
+}
+
+function hslControls(e) {
+  /* récupération de l'index du slider que l'on touche */
+  const index =
+    e.target.getAttribute("data-hue") ||
+    e.target.getAttribute("data-bright") ||
+    e.target.getAttribute("data-sat");
+
+  /* identification du slider touché en fonction de son parent */
+  let sliders = e.target.parentElement.querySelectorAll('input[type="range"]');
+  const teinte = sliders[0];
+  const luminosité = sliders[1];
+  const saturation = sliders[2];
+
+  /* récupération de la valeur de la couleur affiché dans la div que l'on modifie */
+  const bgColor = colorDivs[index].querySelector("h2").innerText;
+  console.log(bgColor);
+
+  /* valeur finale de la couleur après modification avec sliders */
+  let color = chroma(bgColor)
+    .set("hsl.s", saturation.value)
+    .set("hsl.l", luminosité.value)
+    .set("hsl.h", teinte.value);
+
+  /* affichage de la couleur en fond */
+  colorDivs[index].style.backgroundColor = color;
 }
 
 randomColors();
