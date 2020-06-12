@@ -6,8 +6,15 @@ const currentHexes = document.querySelectorAll(".color h2");
 let couleurInitiale;
 
 /*** AJOUT DES EVENTS LISTENERS ***/
+/* à l'écoute d'un changement sur les sliders */
 sliders.forEach((slider) => {
   slider.addEventListener("input", hslControls);
+});
+
+colorDivs.forEach((div, index) => {
+  div.addEventListener("change", () => {
+    updateTextColor(index);
+  });
 });
 /* FONCTIONS */
 /* Fonction permettant de générer le code Hexadecimal d'une couleur */
@@ -101,7 +108,6 @@ function hslControls(e) {
 
   /* récupération de la valeur de la couleur affiché dans la div que l'on modifie */
   const bgColor = colorDivs[index].querySelector("h2").innerText;
-  console.log(bgColor);
 
   /* valeur finale de la couleur après modification avec sliders */
   let color = chroma(bgColor)
@@ -111,6 +117,17 @@ function hslControls(e) {
 
   /* affichage de la couleur en fond */
   colorDivs[index].style.backgroundColor = color;
+}
+
+function updateTextColor(index) {
+  /* récupération des données identifiant la Div active, la couleur de son background, le texte qu'elle affiche et les boutons qui permette sa modification */
+  const activeDiv = colorDivs[index];
+  const color = chroma(activeDiv.style.backgroundColor);
+  const textHex = activeDiv.querySelector("h2");
+  const icons = activeDiv.querySelectorAll(".controls button");
+
+  // textHex.innerText = color.hex();
+  textHex.innerText = color;
 }
 
 randomColors();
