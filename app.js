@@ -62,7 +62,7 @@ function randomColors() {
 /* fonction permettant le controle du contraste d'une couleur de sorte d'écrire la valeur Hexadécimale de la couleur en noir ou blanc */
 function checkTextConstrast(color, text) {
   const luminance = chroma(color).luminance();
-  if (luminance > 0.6) {
+  if (luminance > 0.5) {
     text.style.color = "black";
   } else {
     text.style.color = "white";
@@ -122,12 +122,18 @@ function hslControls(e) {
 function updateTextColor(index) {
   /* récupération des données identifiant la Div active, la couleur de son background, le texte qu'elle affiche et les boutons qui permette sa modification */
   const activeDiv = colorDivs[index];
+  /* chroma fournit un objet avec les valeurs RGB d'une couleur */
   const color = chroma(activeDiv.style.backgroundColor);
   const textHex = activeDiv.querySelector("h2");
   const icons = activeDiv.querySelectorAll(".controls button");
-
-  // textHex.innerText = color.hex();
-  textHex.innerText = color;
+  console.log(icons);
+  /* .hex() convertie une valeur en Hexadecimal */
+  textHex.innerText = color.hex();
+  /* controle et adapte la couleur du texte et des icons en fonction du contraste */
+  checkTextConstrast(color, textHex);
+  for (icon of icons) {
+    checkTextConstrast(color, icon);
+  }
 }
 
 randomColors();
