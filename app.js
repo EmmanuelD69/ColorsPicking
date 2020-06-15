@@ -1,4 +1,4 @@
-/* SELECTIONS ET VARIABLES */
+/*** SELECTIONS ET VARIABLES ***/
 const colorDivs = document.querySelectorAll(".color");
 const generateBtn = document.querySelector(".generate");
 const sliders = document.querySelectorAll('input[type="range"]');
@@ -16,7 +16,8 @@ colorDivs.forEach((div, index) => {
     updateTextColor(index);
   });
 });
-/* FONCTIONS */
+
+/*** FONCTIONS ***/
 /* Fonction permettant de générer le code Hexadecimal d'une couleur */
 
 /* VERSION NATIVE SANS UTILISER LIBRAIRIE CHROMA JS */
@@ -37,9 +38,12 @@ function generateHexChromaJs() {
 
 /* fonction permettant l'affichage d'une couleur ayant été généré par la fonction generateHex */
 function randomColors() {
+  couleurInitiale = [];
   colorDivs.forEach((div, index) => {
     const hexText = div.children[0];
     const randomColor = generateHexChromaJs();
+    /* sauvegarde des couleurs d'origine dans la variable "couleurInitiales" */
+    couleurInitiale.push(chroma(randomColor).hex());
     /* add couleur au background */
     div.style.backgroundColor = randomColor;
     /* add texte pour identifier la couleur */
@@ -106,8 +110,8 @@ function hslControls(e) {
   const luminosité = sliders[1];
   const saturation = sliders[2];
 
-  /* récupération de la valeur de la couleur affiché dans la div que l'on modifie */
-  const bgColor = colorDivs[index].querySelector("h2").innerText;
+  /* récupération de la valeur de la couleur d'origine affiché dans la div que l'on modifie */
+  const bgColor = couleurInitiale[index];
 
   /* valeur finale de la couleur après modification avec sliders */
   let color = chroma(bgColor)
@@ -126,7 +130,6 @@ function updateTextColor(index) {
   const color = chroma(activeDiv.style.backgroundColor);
   const textHex = activeDiv.querySelector("h2");
   const icons = activeDiv.querySelectorAll(".controls button");
-  console.log(icons);
   /* .hex() convertie une valeur en Hexadecimal */
   textHex.innerText = color.hex();
   /* controle et adapte la couleur du texte et des icons en fonction du contraste */
