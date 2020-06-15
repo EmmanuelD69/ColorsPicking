@@ -61,6 +61,9 @@ function randomColors() {
 
     colorizeSliders(color, hue, brightness, saturation);
   });
+
+  /* Reset Inputs */
+  resetInputs();
 }
 
 /* fonction permettant le controle du contraste d'une couleur de sorte d'écrire la valeur Hexadécimale de la couleur en noir ou blanc */
@@ -121,6 +124,9 @@ function hslControls(e) {
 
   /* affichage de la couleur en fond */
   colorDivs[index].style.backgroundColor = color;
+
+  /* updating la couleur de fond des sliders quand on modifie la luminosité et/ou le contraste */
+  colorizeSliders(color, teinte, luminosité, saturation);
 }
 
 function updateTextColor(index) {
@@ -137,6 +143,27 @@ function updateTextColor(index) {
   for (icon of icons) {
     checkTextConstrast(color, icon);
   }
+}
+
+function resetInputs() {
+  const sliders = document.querySelectorAll('input[type="range"]');
+  sliders.forEach((slider) => {
+    if (slider.name === "hue") {
+      const hueColor = couleurInitiale[slider.getAttribute("data-hue")];
+      const hueValue = chroma(hueColor).hsl()[0];
+      slider.value = Math.floor(hueValue);
+    }
+    if (slider.name === "brightness") {
+      const brightColor = couleurInitiale[slider.getAttribute("data-bright")];
+      const brightValue = chroma(brightColor).hsl()[2];
+      slider.value = Math.floor(brightValue * 100) / 100;
+    }
+    if (slider.name === "saturation") {
+      const satColor = couleurInitiale[slider.getAttribute("data-sat")];
+      const satValue = chroma(satColor).hsl()[1];
+      slider.value = Math.floor(satValue * 100) / 100;
+    }
+  });
 }
 
 randomColors();
