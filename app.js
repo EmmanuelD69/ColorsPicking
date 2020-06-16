@@ -49,6 +49,17 @@ closeAdjustmentBtn.forEach((button, index) => {
   });
 });
 
+lockBtn.forEach((button, index) => {
+  button.addEventListener("click", () => {
+    lockCouleur(index);
+    if (button.parentElement.parentElement.classList.contains("locked")) {
+      button.innerHTML = `<i class="fas fa-lock"></i>`;
+    } else {
+      button.innerHTML = `<i class="fas fa-lock-open"></i>`;
+    }
+  });
+});
+
 /*** FONCTIONS ***/
 /* Fonction permettant de générer le code Hexadecimal d'une couleur */
 
@@ -74,10 +85,18 @@ function randomColors() {
   colorDivs.forEach((div, index) => {
     const hexText = div.children[0];
     const randomColor = generateHexChromaJs();
+
     /* sauvegarde des couleurs d'origine dans la variable "couleurInitiales" */
-    couleurInitiale.push(chroma(randomColor).hex());
+    if (div.classList.contains("locked")) {
+      couleurInitiale.push(hexText.innerText);
+      return;
+    } else {
+      couleurInitiale.push(chroma(randomColor).hex());
+    }
+
     /* add couleur au background */
     div.style.backgroundColor = randomColor;
+
     /* add texte pour identifier la couleur */
     hexText.innerText = randomColor;
 
@@ -96,6 +115,7 @@ function randomColors() {
 
   /* Reset Inputs */
   resetInputs();
+
   /* add check pour le contrast des icones */
   openAdjustBtn.forEach((button, index) => {
     checkTextConstrast(couleurInitiale[index], button);
@@ -118,6 +138,7 @@ function colorizeSliders(color, hue, brightness, saturation) {
   const noSat = color.set("hsl.s", 0);
   const fullSat = color.set("hsl.s", 1);
   const echelleSat = chroma.scale([noSat, color, fullSat]);
+
   /* background de la barre de saturation */
   saturation.style.backgroundImage = `linear-gradient(to right,${echelleSat(
     0
@@ -169,12 +190,15 @@ function hslControls(e) {
 function updateTextColor(index) {
   /* récupération des données identifiant la Div active, la couleur de son background, le texte qu'elle affiche et les boutons qui permette sa modification */
   const activeDiv = colorDivs[index];
+
   /* chroma fournit un objet avec les valeurs RGB d'une couleur */
   const color = chroma(activeDiv.style.backgroundColor);
   const textHex = activeDiv.querySelector("h2");
   const icons = activeDiv.querySelectorAll(".controls button");
+
   /* .hex() convertie une valeur en Hexadecimal */
   textHex.innerText = color.hex();
+
   /* controle et adapte la couleur du texte et des icons en fonction du contraste */
   checkTextConstrast(color, textHex);
   for (icon of icons) {
@@ -210,6 +234,7 @@ function copyToClipboard(hex) {
   el.select();
   document.execCommand("copy");
   document.body.removeChild(el);
+
   /* déclenchement de l'animation de la fenêtre popup */
   const popupBox = popup.children[0];
   popup.classList.add("active");
@@ -221,6 +246,9 @@ function openAdjustmentPanel(index) {
 }
 function closeAdjustmentPanel(index) {
   sliderContainers[index].classList.remove("active");
+}
+function lockCouleur(index) {
+  colorDivs[index].classList.toggle("locked");
 }
 
 randomColors();
