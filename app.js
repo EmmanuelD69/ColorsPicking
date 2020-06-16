@@ -16,6 +16,9 @@ sliders.forEach((slider) => {
   slider.addEventListener("input", hslControls);
 });
 
+/* bouton "generate" qui lance la fonction randomColors à chaque click */
+generateBtn.addEventListener("click", randomColors);
+
 colorDivs.forEach((div, index) => {
   div.addEventListener("change", () => {
     updateTextColor(index);
