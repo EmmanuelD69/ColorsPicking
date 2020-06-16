@@ -7,6 +7,7 @@ const popup = document.querySelector(".copy-container");
 const openAdjustBtn = document.querySelectorAll(".adjust");
 const closeAdjustmentBtn = document.querySelectorAll(".close-adjustment");
 const sliderContainers = document.querySelectorAll(".sliders");
+const lockBtn = document.querySelectorAll(".lock");
 let couleurInitiale;
 
 /*** AJOUT DES EVENTS LISTENERS ***/
@@ -77,7 +78,7 @@ function randomColors() {
     /* add texte pour identifier la couleur */
     hexText.innerText = randomColor;
 
-    /* add check pour le contrast */
+    /* add check pour le contrast du texte */
     checkTextConstrast(randomColor, hexText);
 
     /* Couleur initiale des sliders */
@@ -92,6 +93,11 @@ function randomColors() {
 
   /* Reset Inputs */
   resetInputs();
+  /* add check pour le contrast des icones */
+  openAdjustBtn.forEach((button, index) => {
+    checkTextConstrast(couleurInitiale[index], button);
+    checkTextConstrast(couleurInitiale[index], lockBtn[index]);
+  });
 }
 
 /* fonction permettant le controle du contraste d'une couleur de sorte d'écrire la valeur Hexadécimale de la couleur en noir ou blanc */
