@@ -8,7 +8,10 @@ const openAdjustBtn = document.querySelectorAll(".adjust");
 const closeAdjustmentBtn = document.querySelectorAll(".close-adjustment");
 const sliderContainers = document.querySelectorAll(".sliders");
 const lockBtn = document.querySelectorAll(".lock");
+/* Pour sauvegarder les couleurs initiales */
 let couleurInitiale;
+/* pour utiliser avec local storage */
+let savedPalettes = [];
 
 /*** AJOUT DES EVENTS LISTENERS ***/
 /* à l'écoute d'un changement sur les sliders */
@@ -249,6 +252,60 @@ function closeAdjustmentPanel(index) {
 }
 function lockCouleur(index) {
   colorDivs[index].classList.toggle("locked");
+}
+
+/* Mise en place de la Sauvegarde et du Local Storage pour les palettes de couleurs */
+const saveBtn = document.querySelector(".save");
+const submitSave = document.querySelector(".submit-save");
+const closeSave = document.querySelector(".close-save");
+const saveContainer = document.querySelector(".save-container");
+const saveInput = document.querySelector(".save-container input");
+
+/* Event listener pour save button */
+saveBtn.addEventListener("click", openPalette);
+closeSave.addEventListener("click", closePalette);
+submitSave.addEventListener("click", savePalette);
+
+function openPalette(e) {
+  const popup = saveContainer.children[0];
+  saveContainer.classList.add("active");
+  popup.classList.add("active");
+}
+function closePalette(e) {
+  const popup = saveContainer.children[0];
+  saveContainer.classList.remove("active");
+  popup.classList.remove("active");
+}
+
+function savePalette(e) {
+  saveContainer.classList.remove("active");
+  popup.classList.remove("active");
+  const name = saveInput.value;
+  const colors = [];
+  currentHexes.forEach((hex) => {
+    colors.push(hex.innerText);
+  });
+
+  /* Création de l'objet qui va stocker la palette de couleurs */
+  let paletteNr = savedPalettes.length;
+  const paletteObj = { name, colors, nr: paletteNr };
+  savedPalettes.push(paletteObj);
+  console.log(savedPalettes);
+
+  /* sauvegarde de l'objet dans le local storage */
+  saveToLocalStorage(paletteObj);
+  saveInput.value = "";
+}
+
+function saveToLocalStorage(paletteObj) {
+  let localPalettes;
+  if (localStorage.getItem("palettes") === null) {
+    localPalettes = [];
+  } else {
+    localPalettes = JSON.parse(localStorage.getItem("palettes"));
+  }
+  localPalettes.push(paletteObj);
+  localStorage.setItem("palettes", JSON.stringify(localPalettes));
 }
 
 randomColors();
