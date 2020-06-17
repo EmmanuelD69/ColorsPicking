@@ -329,6 +329,20 @@ function savePalette(e) {
   paletteBtn.classList.add(paletteObj.nr);
   paletteBtn.innerText = "select";
 
+  /* bouton "select" */
+  paletteBtn.addEventListener("click", (e) => {
+    closeLibrary();
+    const paletteIndex = e.target.classList[1];
+    couleurInitiale = [];
+    savedPalettes[paletteIndex].colors.forEach((color, index) => {
+      couleurInitiale.push(color);
+      colorDivs[index].style.backgroundColor = color;
+      const text = colorDivs[index].children[0];
+      checkTextConstrast(color, text);
+      updateTextColor(index);
+    });
+  });
+
   /* ajout des sélections sauvegardés à la bibliothèque  */
   palette.appendChild(title);
   palette.appendChild(preview);
