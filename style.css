@@ -76,6 +76,19 @@ svg {
   cursor: pointer;
 }
 
+.clear-library {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.5rem;
+  border-top-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  border: none;
+  background: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
 .controls {
   display: flex;
   flex-direction: column;
