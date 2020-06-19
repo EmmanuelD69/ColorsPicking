@@ -348,6 +348,11 @@ function savePalette(e) {
   paletteBtn.classList.add(paletteObj.nr);
   paletteBtn.innerText = "select";
 
+  const paletteBtn2 = document.createElement("button");
+  paletteBtn2.classList.add("delete-palette-btn");
+  paletteBtn2.classList.add(paletteObj.nr);
+  paletteBtn2.innerText = "delete";
+
   /* bouton "select" */
   paletteBtn.addEventListener("click", (e) => {
     closeLibrary();
@@ -363,10 +368,18 @@ function savePalette(e) {
     resetInputs();
   });
 
+  /* bouton "delete" */
+  paletteBtn2.addEventListener("click", (e) => {
+    const paletteIndex = e.target.classList[1];
+    console.log("bouton delete en cours de développement");
+    alert("bouton delete en cours de développement");
+  });
+
   /* ajout des sélections sauvegardés à la bibliothèque  */
   palette.appendChild(title);
   palette.appendChild(preview);
   palette.appendChild(paletteBtn);
+  palette.appendChild(paletteBtn2);
   libraryContainer.children[0].appendChild(palette);
 }
 
@@ -406,6 +419,11 @@ function getFromLocalStorage() {
       paletteBtn.classList.add(paletteObj.nr);
       paletteBtn.innerText = "select";
 
+      const paletteBtn2 = document.createElement("button");
+      paletteBtn2.classList.add("delete-palette-btn");
+      paletteBtn2.classList.add(paletteObj.nr);
+      paletteBtn2.innerText = "delete";
+
       /* bouton "select" */
       paletteBtn.addEventListener("click", (e) => {
         closeLibrary();
@@ -421,10 +439,18 @@ function getFromLocalStorage() {
         resetInputs();
       });
 
+      /* bouton "delete" */
+      paletteBtn2.addEventListener("click", (e) => {
+        const paletteIndex = e.target.classList[1];
+        console.log("bouton delete en cours de développement");
+        alert("bouton delete en cours de développement");
+      });
+
       /* ajout des sélections sauvegardés à la bibliothèque  */
       palette.appendChild(title);
       palette.appendChild(preview);
       palette.appendChild(paletteBtn);
+      palette.appendChild(paletteBtn2);
       libraryContainer.children[0].appendChild(palette);
     });
   }
