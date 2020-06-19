@@ -65,19 +65,16 @@ lockBtn.forEach((button, index) => {
   });
 });
 
-// clearBtn.addEventListener("click", () => {
-//   localStorage.clear();
-//   closeLibrary();
-//   removeAll();
-// });
+clearBtn.addEventListener("click", removeAll);
 
-// function removeAll() {
-//   let test = document.getElementsByClassName("custom-palette");
-//   console.log(test);
-//   test.forEach((entry, index) => {
-//     let c = libraryPopup.removeChild(test[0]);
-//   });
-// }
+function removeAll() {
+  closeLibrary();
+  let paletteList = document.getElementsByClassName("custom-palette");
+  while (paletteList.length > 0) {
+    paletteList[0].remove();
+  }
+  localStorage.clear();
+}
 
 /*** FONCTIONS ***/
 /* Fonction permettant de générer le code Hexadecimal d'une couleur */
