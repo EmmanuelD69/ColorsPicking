@@ -31,11 +31,10 @@ svg {
   position: relative;
   flex: 1;
   overflow: hidden;
-}
-
-.color h2 {
-  font-size: 2rem;
-  cursor: pointer;
+  h2 {
+    font-size: 2rem;
+    cursor: pointer;
+  }
 }
 
 .sliders {
@@ -100,21 +99,19 @@ svg {
   justify-content: space-evenly;
   height: 20vh;
   background: #ffffff;
-}
-
-.panel button {
-  font-size: 1.2rem;
-  margin: 1rem;
-  padding: 1rem 2rem;
-  background: rgb(31, 33, 63);
-  border: none;
-  color: white;
-  cursor: pointer;
-  border-radius: 1rem;
-}
-
-.panel p {
-  font-size: 1.2rem;
+  button {
+    font-size: 1.2rem;
+    margin: 1rem;
+    padding: 1rem 2rem;
+    background: rgb(31, 33, 63);
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 1rem;
+  }
+  p {
+    font-size: 1.5rem;
+  }
 }
 
 .library-panel,
@@ -160,9 +157,16 @@ input[type="range"] {
   pointer-events: none;
 }
 
+.copy-container.active,
+.save-container.active,
+.library-container.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.library-popup,
 .copy-popup,
-.save-popup,
-.library-popup {
+.save-popup {
   background: rgb(98, 100, 133);
   color: white;
   display: flex;
@@ -174,19 +178,15 @@ input[type="range"] {
   transform: translateY(-2rem);
   min-width: 30%;
   min-height: 30vh;
+  h4 {
+    font-size: 2rem;
+  }
 }
 
-.copy-popup h4,
-.save-popup h4,
-.library-popup h4 {
-  font-size: 2rem;
-}
-
-.copy-container.active,
-.save-container.active,
-.library-container.active {
-  opacity: 1;
-  pointer-events: all;
+.library-popup {
+  justify-content: flex-start;
+  overflow: scroll;
+  max-height: 50vh;
 }
 
 .copy-popup.active,
@@ -210,35 +210,26 @@ input[type="range"] {
   font-size: 1.5rem;
 }
 
-.library-popup {
-  min-width: 40%;
-  padding: 1rem;
-  display: flex;
-  justify-content: flex-start;
-  overflow: scroll;
-  max-height: 50vh;
-}
-
 .custom-palette {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
   padding: 2rem;
+  h4 {
+    flex: 1;
+    margin-right: 2rem;
+  }
 }
 
 .small-preview {
   display: flex;
   flex: 1;
-}
-
-.custom-palette h4 {
-  flex: 1;
-}
-
-.small-preview div {
-  height: 5rem;
-  flex: 1;
+  div {
+    height: 5rem;
+    width: 5rem;
+    flex: 1;
+  }
 }
 
 .pick-palette-btn,

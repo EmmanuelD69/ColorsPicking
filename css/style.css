@@ -148,7 +148,7 @@ svg {
 }
 
 .panel p {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 .library-panel,
@@ -207,9 +207,16 @@ input[type="range"] {
   pointer-events: none;
 }
 
+.copy-container.active,
+.save-container.active,
+.library-container.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.library-popup,
 .copy-popup,
-.save-popup,
-.library-popup {
+.save-popup {
   background: #626485;
   color: white;
   display: -webkit-box;
@@ -236,17 +243,18 @@ input[type="range"] {
   min-height: 30vh;
 }
 
+.library-popup h4,
 .copy-popup h4,
-.save-popup h4,
-.library-popup h4 {
+.save-popup h4 {
   font-size: 2rem;
 }
 
-.copy-container.active,
-.save-container.active,
-.library-container.active {
-  opacity: 1;
-  pointer-events: all;
+.library-popup {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  overflow: scroll;
+  max-height: 50vh;
 }
 
 .copy-popup.active,
@@ -271,19 +279,6 @@ input[type="range"] {
   font-size: 1.5rem;
 }
 
-.library-popup {
-  min-width: 40%;
-  padding: 1rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  overflow: scroll;
-  max-height: 50vh;
-}
-
 .custom-palette {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -298,6 +293,13 @@ input[type="range"] {
   padding: 2rem;
 }
 
+.custom-palette h4 {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin-right: 2rem;
+}
+
 .small-preview {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -307,14 +309,9 @@ input[type="range"] {
           flex: 1;
 }
 
-.custom-palette h4 {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-
 .small-preview div {
   height: 5rem;
+  width: 5rem;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
