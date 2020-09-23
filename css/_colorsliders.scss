@@ -1,0 +1,22 @@
+.sliders {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  pointer-events: none;
+  bottom: 0%;
+  opacity: 0;
+  background: rgb(53, 53, 53);
+  padding: 1rem;
+  width: 80%;
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+  /*** WE ARE ADDING AN ADJUSTMENT CLASS ***/
+  transform: translateY(100px);
+  transition: all 0.5s ease-in-out;
+}
+
+.sliders.active {
+  opacity: 1;
+  transform: translateY(0px);
+  pointer-events: all;
+}
