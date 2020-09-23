@@ -4,3 +4,25 @@
 @import "mainscreenbuttons";
 @import "bottomsection";
 @import "popupwindows";
+
+@media screen and (max-width: 1024px) {
+  .colors {
+    flex-direction: column;
+    height: 50vh;
+  }
+
+  .color {
+    min-height: 10vh;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .controls {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 15rem;
+  }
+}
+
+@media screen and (max-width: 512px) {
+}
