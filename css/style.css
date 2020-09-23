@@ -409,5 +409,11 @@ input[type="range"] {
     font-size: 1rem;
     padding: 0.5rem;
   }
+  .sliders {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
 }
 /*# sourceMappingURL=style.css.map */
