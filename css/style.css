@@ -336,7 +336,7 @@ input[type="range"] {
   background: #fa3c3c;
 }
 
-@media screen and (max-width: 1024px) {
+@media all and (max-width: 1024px) {
   .colors {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -362,6 +362,52 @@ input[type="range"] {
     -ms-flex-pack: distribute;
         justify-content: space-around;
     width: 15rem;
+  }
+  .copy-container,
+  .save-container,
+  .library-container {
+    width: 100%;
+  }
+  .copy-container h4,
+  .save-container h4,
+  .library-container h4 {
+    font-size: 1.5rem;
+  }
+  .library-popup,
+  .copy-popup,
+  .save-popup {
+    width: 90%;
+    min-height: 30vh;
+  }
+  .custom-palette {
+    padding: 1rem;
+  }
+  .custom-palette h4 {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+  }
+  .small-preview div {
+    height: 3rem;
+    width: 3rem;
+  }
+  .pick-palette-btn,
+  .delete-palette-btn {
+    height: 3rem;
+    width: 3rem;
+    font-size: 0.8rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .save-name {
+    font-size: 1rem;
+    padding: 0.5rem;
   }
 }
 /*# sourceMappingURL=style.css.map */

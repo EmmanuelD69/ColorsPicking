@@ -5,7 +5,7 @@
 @import "bottomsection";
 @import "popupwindows";
 
-@media screen and (max-width: 1024px) {
+@media all and (max-width: 1024px) {
   .colors {
     flex-direction: column;
     height: 50vh;
@@ -22,7 +22,47 @@
     justify-content: space-around;
     width: 15rem;
   }
-}
 
-@media screen and (max-width: 512px) {
+  .copy-container,
+  .save-container,
+  .library-container {
+    width: 100%;
+    h4 {
+      font-size: 1.5rem;
+    }
+  }
+
+  .library-popup,
+  .copy-popup,
+  .save-popup {
+    width: 90%;
+    min-height: 30vh;
+  }
+
+  .custom-palette {
+    padding: 1rem;
+    h4 {
+      font-size: 1.5rem;
+      margin-right: 1rem;
+    }
+  }
+  .small-preview div {
+    height: 3rem;
+    width: 3rem;
+  }
+
+  .pick-palette-btn,
+  .delete-palette-btn {
+    height: 3rem;
+    width: 3rem;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .save-name {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
 }
