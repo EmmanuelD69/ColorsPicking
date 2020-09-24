@@ -336,6 +336,7 @@ input[type="range"] {
   background: #fa3c3c;
 }
 
+/* RESPONSIVE DESIGN */
 @media all and (max-width: 1024px) {
   .colors {
     -webkit-box-orient: vertical;
@@ -410,20 +411,33 @@ input[type="range"] {
     padding: 0.5rem;
   }
   .sliders {
+    font-size: calc(0.5rem + 1vw);
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
     width: 100%;
+    height: 5vh;
+  }
+  .sliders input {
+    width: calc(5rem + 4vw);
+  }
+}
+
+@media all and (max-width: 512px) {
+  .sliders {
     height: 10vh;
   }
   .sliders input {
     -webkit-transform: rotate(90deg);
             transform: rotate(90deg);
-    width: 5rem;
+    width: 4rem;
   }
 }
 /*# sourceMappingURL=style.css.map */
