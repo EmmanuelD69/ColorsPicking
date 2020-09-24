@@ -68,6 +68,12 @@
 
   .sliders {
     flex-direction: row;
-    // align-items: center;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+    input {
+      transform: rotate(90deg);
+      width: 5rem;
+    }
   }
 }
